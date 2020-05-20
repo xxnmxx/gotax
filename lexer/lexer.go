@@ -1,6 +1,6 @@
 package lexer
 
-import "gotax/token"
+import "github.com/xxnmxx/gotax/token"
 
 type Lexer struct {
 	input        string
@@ -66,16 +66,16 @@ func (l *Lexer) NextToken() token.Token {
 		}
 		tok = newToken(token.ILLEGAL, l.ch)
 	}
-	readChar()
+	l.readChar()
 	return tok
 }
 
 func newToken(tokenType token.TokenType, ch byte) token.Token {
-	return token.Token{Token: tokenType, Literal: string(ch)}
+	return token.Token{Type: tokenType, Literal: string(ch)}
 }
 
 func (l *Lexer) readIdentifier() string {
-	position = l.position
+	position := l.position
 	for isLetter(l.ch) {
 		l.readChar()
 	}
@@ -99,7 +99,7 @@ func isDigit(ch byte) bool {
 }
 
 func (l *Lexer) skipWhitespace() {
-	for l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '/r' {
+	for l.ch == ' ' || l.ch == '\t' || l.ch == '\n' || l.ch == '\r' {
 		l.readChar()
 	}
 }

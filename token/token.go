@@ -3,7 +3,7 @@ package token
 type TokenType string
 
 type Token struct {
-	Type   TokenType
+	Type    TokenType
 	Literal string
 }
 
@@ -15,14 +15,24 @@ const (
 	// Identifiers and literals
 	IDENT = "IDENT"
 	INT   = "INT"
-	FLOAT = "FLOAT"
+	FLOAT = "FLOAT" // ToDo
 
 	// Operators
-	ASSIGN = "="
-	PLUS   = "+"
+	ASSIGN   = "="
+	PLUS     = "+"
+	MINUS    = "-"
+	BANG     = "!"
+	ASTERISK = "*"
+	SLASH    = "/"
+
+	LT = "<"
+	GT = ">"
+
+	EQ     = "=="
+	NOT_EQ = "!="
 
 	// Delimiters
-	DOT       = "."
+	DOT       = "." // ToDo
 	COMMA     = ","
 	SEMICOLON = ";"
 	COLON     = ":"
@@ -37,11 +47,21 @@ const (
 	// Keywords
 	FUNCTION = "FUNCTION"
 	LET      = "LET"
+	TRUE     = "TRUE"
+	FALSE    = "FALSE"
+	IF       = "IF"
+	ELSE     = "ELSE"
+	RETURN   = "RETURN"
 )
 
 var keywords = map[string]TokenType{
-	"fn":  FUNCTION,
-	"let": LET,
+	"fn":     FUNCTION,
+	"let":    LET,
+	"true":   TRUE,
+	"false":  FALSE,
+	"if":     IF,
+	"else":   ELSE,
+	"return": RETURN,
 }
 
 func LookupIdent(ident string) TokenType {
